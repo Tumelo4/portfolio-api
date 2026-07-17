@@ -12,8 +12,7 @@ FROM eclipse-temurin:21-jre-jammy
 
 WORKDIR /app
 
-RUN groupadd --system spring \
-    && useradd --system --gid spring --home-dir /app spring
+RUN groupadd --system spring && useradd --system --gid spring --home-dir /app spring
 
 COPY --from=build \
     /workspace/target/portfolio-api.jar \
@@ -23,9 +22,4 @@ USER spring:spring
 
 EXPOSE 10000
 
-ENTRYPOINT [
-    "java",
-    "-XX:MaxRAMPercentage=75.0",
-    "-jar",
-    "/app/portfolio-api.jar"
-]
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
