@@ -14,9 +14,7 @@ WORKDIR /app
 
 RUN groupadd --system spring && useradd --system --gid spring --home-dir /app spring
 
-COPY --from=build \
-    /workspace/target/portfolio-api.jar \
-    /app/portfolio-api.jar
+COPY --from=build /workspace/target/portfolio-api.jar /app/app.jar
 
 USER spring:spring
 
